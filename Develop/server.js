@@ -25,6 +25,7 @@ app.get('/notes', (req, res) => {
   res.sendFile(path.join(__dirname, './public/notes.html'));
 });
 
+//Wildcard route using '*' returning index.html
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './public/index.html'));
 });
@@ -33,3 +34,26 @@ app.get('*', (req, res) => {
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
 );
+
+//create new note & assign unique id
+function createNote(body, notesArr){
+  let currNote = body;
+
+  body.id = notesArr[0];
+  notesArr[0]++;
+
+  //push new note to notesArr
+  notesArr.push(currNote);
+
+  //write new note to db.json
+  fs.writeFile(path.join(__dirname, notesDB), JSON.stringify(notesArr));
+
+  return currNote;  
+}
+
+//post method to calla createNote function
+app.post('/api/notes', (req, res) => {
+  //create note with request body
+  const note = createNote(req.body, notesDB);
+  res.json(note);
+})
