@@ -54,6 +54,6 @@ function createNote(body, notesArr){
 //post method to calla createNote function
 app.post('/api/notes', (req, res) => {
   //create note with request body
-  const note = createNote(req.body, notesDB);
+  const note = createNote(req.body, './db/db.json');
   res.json(note);
 })
