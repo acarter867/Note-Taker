@@ -38,7 +38,9 @@ app.listen(PORT, () =>
 //create new note & assign unique id
 function createNote(body, notesArr){
   let currNote = body;
-
+  if(!Array.isArray(notesArr)){
+    notesArr = [];
+  }
   body.id = notesArr[0];
   notesArr[0]++;
 
@@ -46,7 +48,7 @@ function createNote(body, notesArr){
   notesArr.push(currNote);
 
   //write new note to db.json
-  fs.writeFile(path.join(__dirname, notesDB), JSON.stringify(notesArr));
+  fs.writeFile(path.join(__dirname, './db/db.json'), JSON.stringify(notesArr));
 
   return currNote;  
 }
