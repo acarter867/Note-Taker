@@ -48,7 +48,9 @@ function createNote(body, notesArr){
   notesArr.push(currNote);
 
   //write new note to db.json
-  fs.writeFile(path.join(__dirname, './db/db.json'), JSON.stringify(notesArr));
+  fs.writeFileSync(path.join(__dirname, './db/db.json'),
+    JSON.stringify(notesArr)
+  );
 
   return currNote;  
 }
@@ -56,6 +58,6 @@ function createNote(body, notesArr){
 //post method to calla createNote function
 app.post('/api/notes', (req, res) => {
   //create note with request body
-  const note = createNote(req.body, './db/db.json');
+  const note = createNote(req.body, notesDB);
   res.json(note);
-})
+});
