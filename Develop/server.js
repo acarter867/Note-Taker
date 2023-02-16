@@ -13,7 +13,7 @@ app.use(express.static('public'));
 //returns db.json from notes route
 app.get('/api/notes', (req, res) => {
   res.json(notesDB);
-})
+});
 
 //Root should return default index.html
 app.get('/', (req, res) => {
@@ -51,7 +51,6 @@ function createNote(body, notesArr){
   fs.writeFileSync(path.join(__dirname, './db/db.json'),
     JSON.stringify(notesArr)
   );
-
   return currNote;  
 }
 
