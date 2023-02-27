@@ -51,6 +51,7 @@ function createNote(body, notesArr){
   fs.writeFileSync(path.join(__dirname, './db/db.json'),
     JSON.stringify(notesArr)
   );
+  //return current note
   return currNote;  
 }
 
