@@ -25,4 +25,4 @@ acarter867
 acarter867@icloud.com
 
 ## Preview
-<img src="../Images/fixed-note-taker-final.herokuapp.com_notes.png" alt="Application preview">
+<img src="./Images/fixed-note-taker-final.herokuapp.com_notes.png" alt="Application preview">
